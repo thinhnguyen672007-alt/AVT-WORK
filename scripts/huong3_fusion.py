@@ -15,9 +15,6 @@ for p in (A1, A2, B):
     if not os.path.exists(p):
         raise SystemExit(f"Thiếu {p} — chạy huong1_osnet.py trước.")
 
-import sys
-if "tensorflow" not in sys.modules:
-    sys.modules["tensorflow"] = None  # chặn tensorboard kéo TF vào làm vỡ torchreid (lỗi numpy/jax)
 try:
     from torchreid.utils import FeatureExtractor
 except ImportError:
@@ -58,6 +55,3 @@ for label, i, j in pairs:
     f = face_score(i, j)
     fused = 0.6 * b + 0.4 * f if f is not None else None
     print(f"{label:<26}{b:>12.3f}{(f'{f:.3f}' if f is not None else 'không thấy mặt'):>12}{(f'{fused:.3f}' if fused is not None else 'chỉ dùng ngoại hình'):>10}")
-print()
-print("Nói với anh Tiến: trọng số 0.6/0.4 là heuristic chọn bằng thử trên tập cặp demo;")
-print("khi không detect được mặt, hệ thống fallback về ngoại hình — không sập.")
