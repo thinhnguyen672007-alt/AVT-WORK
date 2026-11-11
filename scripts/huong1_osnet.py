@@ -57,7 +57,7 @@ print(f"Cùng người = ID {main_id} (2 crop to nhất, cách nhau {abs(second[
 
 import sys
 if "tensorflow" not in sys.modules:
-    sys.modules["tensorflow"] = None  # chặn tensorboard kéo TF vào làm vỡ torchreid (lỗi numpy/jax)
+    sys.modules["tensorflow"] = None  # chặn tensorboard lazy-load TF: jax mới vỡ với numpy 1.26.4
 try:
     from torchreid.utils import FeatureExtractor
 except ImportError:
