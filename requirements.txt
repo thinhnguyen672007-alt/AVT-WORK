@@ -1,0 +1,7 @@
+torchreid
+ultralytics
+insightface
+onnxruntime-gpu
+gdown
+tensorboard
+numpy==1.26.4
